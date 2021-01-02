@@ -10,8 +10,8 @@ pipeline {
 	
 	stages {
 		stage ('Scm Checkout') {
-			steps {
-				checkout scm
+			steps {				
+				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/zahirulislam04/library-cloud-api.git']]])
 			}
 		}
 		
