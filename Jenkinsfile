@@ -11,7 +11,7 @@ pipeline {
 	stages {
 		stage ('Scm Checkout') {
 			steps {
-				git 'https://github.com/zahirulislam04/library-cloud-api.git'
+				git branch: '**', url: 'https://github.com/zahirulislam04/library-cloud-api.git'
 			}
 		}
 		
