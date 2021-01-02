@@ -37,7 +37,7 @@ pipeline {
             }
 		}
 		
-		stage ('Build') {
+		stage ('Build Application') {
 			steps {
 				echo "Cleaning and building jar file"
 				
@@ -45,14 +45,7 @@ pipeline {
 				
 			}				
 		}
-		
-		stage ('Test') {
-			steps {
-				echo  "Testing.."
-				sh 'mvn test'
-			}
-		}
-		
+				
 		stage ('Build Docker Image') {
 			steps {
 				sh 'whoami'
