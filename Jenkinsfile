@@ -10,9 +10,31 @@ pipeline {
 	
 	stages {
 		stage ('Scm Checkout') {
-			steps {				
-				checkout([$class: 'GitSCM', branches: [[name: '*/*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/zahirulislam04/library-cloud-api.git']]])
-			}
+			steps {
+                // GIT submodule recursive checkout
+                checkout scm: [
+                        $class: 'GitSCM',
+                        branches: scm.branches,
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [[$class: 'SubmoduleOption',
+                                      disableSubmodules: false,
+                                      parentCredentials: false,
+                                      recursiveSubmodules: true,
+                                      reference: '',
+                                      trackingSubmodules: false]],
+                        submoduleCfg: [],
+                        userRemoteConfigs: scm.userRemoteConfigs
+                ]
+                // copy managed files to workspace
+                script {
+                    if(params.USE_INPUT_DUNS) {
+                        configFileProvider([configFile(fileId: '609999e4-446c-4705-a024-061ed7ca2a11',
+                                targetLocation: 'input/')]) {
+                            echo 'Managed file copied to workspace'
+                        }
+                    }
+                }
+            }
 		}
 		
 		stage ('Build') {
