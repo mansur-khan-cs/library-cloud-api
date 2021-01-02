@@ -5,7 +5,7 @@ pipeline {
 		PROJECT_ID = 'my-k8s-project-300415'
 		CLUSTER_NAME = 'library-cloud-api-k8-cluster'
 		LOCATION = 'europe-west1'
-		CREDENTIAL_ID = 'my-k8s-project'
+		CREDENTIALS_ID = 'my-k8s-project'
 	}
 	
 	stages {
