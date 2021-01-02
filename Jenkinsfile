@@ -62,6 +62,13 @@ pipeline {
 			}
 		}
 		
-		
+		stage ('Push Docker image to Dockerhub') {
+			steps{
+				script {
+					docker.withRegistry('https://registry.hub.docker.com','Dockerhub')
+					myimage.push("${env.BUILD_ID}")
+				}
+			}
+		}
 	}
 }
