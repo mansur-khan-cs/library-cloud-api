@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-cloud-api
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: library-cloud-api
+  template:
+    metadata:
+      labels:
+        app: library-cloud-api
+    spec:
+      containers:
+      - name: library-cloud-api
+        image: gcr.io/my-k8s-project-300415/library-cloud-api:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      
