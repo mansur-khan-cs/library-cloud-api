@@ -78,7 +78,7 @@ pipeline {
 				echo "Deployment started.."
 				sh 'ls -ltr'
 				sh 'pwd'
-				sh "sed -i 's/zahirulislam/library-cloud-api:tagversion/zahirulislam/library-cloud-api:${env.BUILD_ID}/g', deployment.yaml"													
+				sh "sed -i 's/library-cloud-api:tagversion/library-cloud-api:${env.BUILD_ID}/g', deployment.yaml"													
 				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])				
 			}
 		}
