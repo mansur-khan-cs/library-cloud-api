@@ -40,8 +40,7 @@ pipeline {
 		stage ('Build') {
 			steps {
 				echo "Cleaning and building jar file"
-				echo $M2_HOME
-				echo $PATH
+				
 				sh 'mvn clean install'
 				
 			}				
