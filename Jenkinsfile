@@ -11,7 +11,7 @@ pipeline {
 	stages {
 		stage ('Scm Checkout') {
 			steps {				
-				checkout([$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/zahirulislam04/library-cloud-api.git']]])
+				checkout([$class: 'GitSCM', branches: [[name: '*/*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/zahirulislam04/library-cloud-api.git']]])
 			}
 		}
 		
