@@ -11,7 +11,7 @@ pipeline {
 	stages {
 		stage ('Scm Checkout') {
 			steps {
-				checkout scm
+				git 'https://github.com/zahirulislam04/library-cloud-api.git'
 			}
 		}
 		
