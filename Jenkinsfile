@@ -9,7 +9,7 @@ pipeline {
 	}
 	
 	stages {
-		stage ('GIT Checkout') {
+		stage ('SCM Checkout') {
 			steps {
                 // GIT submodule recursive checkout
                 checkout scm: [
