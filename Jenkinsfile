@@ -9,7 +9,7 @@ pipeline {
 	}
 	
 	stages {
-		stage ('Scm Checkout') {
+		stage ('GIT Checkout') {
 			steps {
                 // GIT submodule recursive checkout
                 checkout scm: [
@@ -66,11 +66,11 @@ pipeline {
 		}
 		
 		
-		stage('Deploy to k8s') {
+		stage('Deployment to GKE') {
 			steps{				
 				echo "Deployment started.."
-				sh 'ls -ltr'
-				sh 'pwd'
+				// sh 'ls -ltr'
+				// sh 'pwd'
 				sh "sed -i 's/library-cloud-api:tagversion/library-cloud-api:${env.BUILD_ID}/g' deployment.yaml"													
 				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])				
 			}
