@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-cloud-api
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: library-cloud-api
+  template:
+    metadata:
+      labels:
+        app: library-cloud-api
+    spec:
+      containers:
+      - name: library-cloud-api
+        image: zahirulislam/library-cloud-api:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: library-cloud-api
+  namespace: default
+spec:
+  selector:
+    app: library-cloud-api
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: NodePort
+  
+  
+  
+  
